@@ -79,7 +79,23 @@
     <td>{{ forloop.counter }}.</td>
     <td>{{ i.waktu_post }}</td>
     <td><a href="{% url 'extra-app:pengumuman-murid-detail' i.pk %}"><strong>{{ i.judul|title }}</strong></a></td>
-    <td>{{ i.konten.html|safe|slice:":20" }}</td>
+    <td>
+        <div class="dropdown no-arrow">
+
+          <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-comment-dots"></i>
+          </a>
+
+          <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="mx-3">
+              <div>
+                {{ i.konten.html|safe|slice:":100" }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </td>
     <td>Pengumuman {{ i.kategori }}</td>
   </tr>
 
@@ -123,7 +139,7 @@
         {{ i.nilai }}
       </strong>
     </td>
-    <td>{{ i.pembuat_tes.guru }}</td>
+    <td>{{ i.pembuat_tes|title }}</td>
   </tr>
 
   {% endfor %}
