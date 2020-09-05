@@ -1,0 +1,52 @@
+{% extends 'account_app/murid/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Nilai Murid | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>
+  Daftar Nilai
+</h1>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Waktu Tes</th>
+    <th>Mata Pelajaran</th>
+    <th>Deskripsi</th>
+    <th>Peserta Tes</th>
+    <th>Nilai</th>
+    <th>Pembuat Tes</th>
+  </thead>
+
+
+  {% for i in nilaimurid_list %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td>{{ i.waktu }}</td>
+    <td>{{ i.mapel_tes }}</td>
+    <td>{{ i.deskripsi }}</td>
+    <td>{{ i.peserta_tes }}</td>
+    <td>
+      <strong class='
+      {% if i.nilai >= 8 %}
+        text-success
+      {% elif i.nilai >= 6 %}
+        text-warning
+      {% else %}
+        text-danger
+      {% endif %}
+      '>
+        {{ i.nilai }}
+      </strong>
+    </td>
+    <td>{{ i.pembuat_tes.guru|title }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+{% endblock content %}

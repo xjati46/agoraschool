@@ -1,0 +1,18 @@
+{% extends 'account_app/murid/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Kurikulum {{ kurikulum.mapel }} | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Kurikulum {{ kurikulum.mapel }} | {{ kurikulum.tingkat_pengajaran }}</h1>
+<hr>
+<p>Disusun oleh {{ kurikulum.guru.nama_lengkap|title }}, {{ kurikulum.tanggal_buat }}</p>
+<div class="card border-success">
+  <div class="card-body">
+    {{ kurikulum.deskripsi.html|safe }}
+  </div>
+</div>
+
+{% endblock content %}

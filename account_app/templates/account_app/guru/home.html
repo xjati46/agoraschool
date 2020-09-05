@@ -1,0 +1,64 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Home | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Selamat datang <strong>{{user.username}}</strong>!</h1>
+<br>
+
+<h3>Pengumuman Teratas</h3>
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Tanggal</th>
+    <th>Judul</th>
+    <th>Konten</th>
+    <th>Kategori</th>
+  </thead>
+
+  {% for i in pengumuman_list %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td>{{ i.waktu_post }}</td>
+    <td><a href="{% url 'extra-app:pengumuman-guru-detail' i.pk %}"><strong>{{ i.judul|title }}</strong></a></td>
+    <td>{{ i.konten.html|safe|slice:":20" }}</td>
+    <td>Pengumuman {{ i.kategori }}</td>
+  </tr>
+
+  {% endfor %}
+</table>
+
+<hr>
+<br>
+
+<h3>Log Mengajar Teratas</h3>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Tanggal</th>
+    <th>Mata Pelajaran</th>
+    <th>Kurikulum</th>
+    <th>Deskripsi</th>
+    <th>Guru</th>
+  </thead>
+
+  {% for i in log_list %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td><a href="{% url 'account-app:logmengajar-guru-detail' i.pk %}">{{ i.tanggal_buat }}</a></td>
+    <td>{{ i.kurikulum.mapel }}</td>
+    <td>{{ i.kurikulum.tingkat_pengajaran }}</td>
+    <td>{{ i.deskripsi.html|safe|slice:":20" }}</td>
+    <td>{{ i.guru|title }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+
+{% endblock content %}

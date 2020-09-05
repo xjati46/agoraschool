@@ -1,0 +1,65 @@
+{% extends 'account_app/murid/base.html' %}
+{% load static %}
+{% load l10n %}
+
+{% block title %}
+  <title>Arsip Keuangan | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>
+  Arsip Keuangan
+</h1>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Judul</th>
+    <th>Murid</th>
+    <th>Nilai</th>
+    <th>Status</th>
+    <th>Waktu Bayar</th>
+    <th>Keterangan</th>
+  </thead>
+
+
+  {% for i in tagihanmurid_list %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td>{{ i.judul }}</td>
+    <td>{{ i.tertagih }}</td>
+    <td>Rp {{ i.nilai|localize }}</td>
+    <td>
+      <strong>
+        {% if i.status_bayar == True %}
+          <i class='far fa-check-circle text-success fa-2x'></i>
+        {% else %}
+          <i class='far fa-times-circle text-danger fa-2x'></i>
+        {% endif %}
+      </strong>
+    </td>
+    <td>{{ i.waktu_bayar }}</td>
+    <td>
+        <div class="dropdown no-arrow">
+
+          <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-comment-dots"></i>
+          </a>
+
+          <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="mx-3">
+              <div>
+                {{ i.keterangan }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+{% endblock content %}

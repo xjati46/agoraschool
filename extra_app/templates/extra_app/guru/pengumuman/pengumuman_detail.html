@@ -1,0 +1,20 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Pengumuman | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>{{ pengumuman.judul|title }}</h1>
+<hr>
+<p>
+  Dibuat pada <strong>{{ pengumuman.waktu_post }}</strong> | Pengumuman <strong>{{ pengumuman.kategori }}</strong>
+</p>
+<div class="card border-success">
+  <div class="card-body">
+    {{ pengumuman.konten.html|safe }}
+  </div>
+</div>
+
+{% endblock content %}

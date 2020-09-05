@@ -1,0 +1,54 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  <title>Kurikulum {{ kurikulum.mapel }} | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="card shadow">
+  <div class="card-body">
+    <form method="post" class='user'>
+      {% csrf_token %}
+
+      <input type="hidden" name="guru" id="id_guru" value='{{ user.id }}'>
+      <div class="form-group">
+        {{ form.mapel.label }}
+
+        <select name="mapel" class="form-control" required="" id="id_mapel">
+          <option value="" selected="">---------</option>
+
+          {% for i in user.timmapel_set.all %}
+            <option value="{{ i.mapel.id }}">{{ i.mapel }}</option>
+          {% endfor %}
+
+        </select>
+
+        {{ form.mapel.errors }}
+      </div>
+
+      {% for field in form %}
+        {% if field is not form.guru and field is not form.mapel %}
+          <div class="form-group">
+            {{ field.label }}
+            {% render_field field class="form-control" %}
+            {{ field.errors }}
+          </div>
+        {% endif %}
+
+
+      {% endfor %}
+
+
+
+      <input type="submit" value="Kirim" class="btn btn-success">
+      <a href="{% url 'account-app:mapel-guru' %}" class='btn btn-danger ml-2'>Batal</a>
+
+    </form>
+  </div>
+
+
+</div>
+{% endblock content %}

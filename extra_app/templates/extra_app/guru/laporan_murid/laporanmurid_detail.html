@@ -1,0 +1,69 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+  <title>Laporan Murid | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col-8 mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Dari:</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ laporanmurid.pelapor }}</div>
+          </div>
+          <div class="col-3">
+            {% if laporanmurid.pelapor.guru.email %}
+              <img class="rounded-circle" src="{{ laporanmurid.pelapor.guru|gravatar:50 }}">
+            {% else %}
+
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <i class='fas fa-arrow-right fa-4x text-warning mt-4'></i>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col-8 mr-2">
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kepada:</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ laporanmurid.terlapor }}</div>
+          </div>
+          <div class="col-3">
+            {% if laporanmurid.terlapor.murid.email %}
+              <img class="rounded-circle" src="{{ laporanmurid.terlapor.murid|gravatar:50 }}">
+            {% else %}
+
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card border-success">
+  <div class="card-body">
+    {{ laporanmurid.konten.html|safe }}
+  </div>
+</div>
+
+<br>
+
+<blockquote class="blockquote text-right">
+  <footer class="blockquote-footer">Dibuat pada <strong>{{ laporanmurid.waktu }}</strong></footer>
+</blockquote>
+
+{% endblock content %}

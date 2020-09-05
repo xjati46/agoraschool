@@ -1,0 +1,54 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Pengumuman | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>
+  Daftar Pengumuman
+  <a href="{% url 'extra-app:pengumuman-tambah' %}" class='btn btn-success ml-4'>Tambah <i class='fas fa-plus'></i></a>
+</h1>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Tanggal</th>
+    <th>Judul</th>
+    <th>Konten</th>
+    <th>Kategori</th>
+  </thead>
+
+
+  {% for i in pengumuman_list %}
+  <tr>
+    <td class='align-middle'>{{ forloop.counter }}.</td>
+    <td class='align-middle'>{{ i.waktu_post }}</td>
+    <td class='align-middle'><a href="{% url 'extra-app:pengumuman-admin-detail' i.pk %}"><strong>{{ i.judul|title }}</strong></a></td>
+    <td class='align-middle'>
+        <div class="dropdown no-arrow">
+
+          <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-comment-dots"></i>
+          </a>
+
+          <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="mx-3">
+              <div>
+                {{ i.konten.html|safe|slice:":100" }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </td>
+    <td class='align-middle'>Pengumuman {{ i.kategori }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+
+{% endblock content %}

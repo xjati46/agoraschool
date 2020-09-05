@@ -1,0 +1,40 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  <title>Log Mengajar | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="card shadow">
+  <div class="card-body">
+    <form method="post" class='user'>
+      {% csrf_token %}
+
+      <input type="hidden" name="guru" id="id_guru" value='{{ user.id }}'>
+
+      {% for field in form %}
+        {% if field is not form.guru %}
+          <div class="form-group">
+            {{ field.label }}
+            {% render_field field class="form-control" %}
+            {{ field.errors }}
+          </div>
+        {% endif %}
+
+
+      {% endfor %}
+
+
+
+      <input type="submit" value="Kirim" class="btn btn-success">
+      <a href="{% url 'account-app:kelas-guru' %}" class='btn btn-danger ml-2'>Batal</a>
+
+    </form>
+  </div>
+
+
+</div>
+{% endblock content %}

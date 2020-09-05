@@ -1,0 +1,102 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Home | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Selamat datang <strong>{{user.username}}</strong>!</h1>
+<br>
+
+<div class="row">
+  <div class="col-4 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col">
+            <div class="text-xl font-weight-bold text-success text-uppercase mb-1">Jumlah Murid</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ jumlah_murid }}</div>
+          </div>
+          <div class="col-auto mr-4">
+            <i class="fas fa-fw fa-users fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-4 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col">
+            <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">Jumlah Kelas</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ jumlah_kelas }}</div>
+          </div>
+          <div class="col-auto mr-4">
+            <i class="fas fa-chalkboard fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-4 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col">
+            <div class="text-xl font-weight-bold text-info text-uppercase mb-1">Jumlah Guru</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ jumlah_guru }}</div>
+          </div>
+          <div class="col-auto mr-4">
+            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-4 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col">
+            <div class="text-xl font-weight-bold text-warning text-uppercase mb-1">Jumlah Mata Pelajaran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ jumlah_mapel }}</div>
+          </div>
+          <div class="col-auto mr-4">
+            <i class="fas fa-book fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

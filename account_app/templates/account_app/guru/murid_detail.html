@@ -1,0 +1,82 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+  <title>{{ anggotakelas.murid.nama_lengkap }} | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<div class="row mb-3">
+  <div class="col-4">
+    <img class='img-thumbnail ml-3' src="{{ anggotakelas.murid|gravatar:300 }}">
+  </div>
+  <div class="col-8">
+    <div class="card-deck">
+      <div class="card shadow">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-success">Informasi Pribadi</h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <span><i class="far fa-comment"></i> Nama Lengkap</span>
+              <p><strong>{{ anggotakelas.murid.nama_lengkap }}</strong></p>
+
+              <span><i class="fas fa-comment"></i> Nama Panggilan</span>
+              <p><strong>{{ anggotakelas.murid.nama_panggilan }}</strong></p>
+
+              <span><i class='fas fa-transgender'></i> Jenis Kelamin</span>
+              <p><strong>{{ anggotakelas.murid.jenis_kelamin }}</strong></p>
+            </div>
+            <div class="col">
+              <span><i class="fas fa-map-marked-alt"></i> Tempat Lahir</span>
+              <p><strong>{{ anggotakelas.murid.tempat_lahir }}</strong></p>
+
+              <span><i class='fas fa-birthday-cake'></i> Tanggal Lahir</span>
+              <p><strong>{{ anggotakelas.murid.tanggal_lahir }}</strong></p>
+
+              <span><i class="far fa-address-card"></i> Identitas</span>
+              <p><strong>{{ anggotakelas.murid.jenis_id }} | {{ anggotakelas.murid.nomor_id }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="card-deck">
+
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-success">Alamat Tinggal</h6>
+    </div>
+    <div class="card-body">
+      <span><i class="fas fa-home mr-2"></i><strong>{{ anggotakelas.murid.alamat_tinggal }}</strong></span>
+    </div>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-success">Nomor Ponsel</h6>
+    </div>
+    <div class="card-body">
+      <span><i class="fas fa-mobile mr-2"></i><strong>{{ anggotakelas.murid.nomor_ponsel }}</strong></span>
+    </div>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-success">E-Mail</h6>
+    </div>
+    <div class="card-body">
+      <span><i class="fas fa-envelope mr-2"></i><strong>{{ anggotakelas.murid.email }}</strong></span>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

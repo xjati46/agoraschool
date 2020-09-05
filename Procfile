@@ -1,0 +1,1 @@
+web: gunicorn aiss.wsgi --log-file -

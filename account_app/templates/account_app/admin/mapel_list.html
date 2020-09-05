@@ -1,0 +1,74 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Mata Pelajaran | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Daftar Mata Pelajaran</h1>
+<hr>
+<br>
+
+<h2>Kurikulum Wajib</h2>
+
+<div class="card-deck" style="width: 69rem;">
+
+  <div class="card">
+    <a href="{% url 'account-app:mapel-admin-detail' pk='1' %}">
+      <img class="card-img-top" src="{% static 'account_app/img/art_card.jpg' %}" style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">Kesenian</h5>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{% url 'account-app:mapel-admin-detail' pk='2' %}">
+      <img class="card-img-top" src="{% static 'account_app/img/math_card.jpg' %}" style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">Matematika</h5>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{% url 'account-app:mapel-admin-detail' pk='3' %}">
+      <img class="card-img-top" src="{% static 'account_app/img/bahasa_card.jpg' %}" style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">Bahasa Indonesia</h5>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<br>
+
+<h2>Kurikulum Lokal</h2>
+<div class="card-deck" style="width: 23rem;">
+  <div class="card">
+    <a href="{% url 'account-app:mapel-admin-detail' pk='4' %}">
+      <img class="card-img-top" src="{% static 'account_app/img/sunda_card.jpeg' %}" style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">Bahasa Sunda</h5>
+      </div>
+    </a>
+  </div>
+</div>
+
+<br>
+
+<h2>Ekstra Kurikuler</h2>
+<div class="card-deck" style="width: 23rem;">
+  <div class="card">
+    <a href="{% url 'account-app:mapel-admin-detail' pk='5' %}">
+      <img class="card-img-top" src="{% static 'account_app/img/karate_card.jpg' %}" style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">Karate</h5>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock content %}

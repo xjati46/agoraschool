@@ -1,0 +1,51 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+  <title>Log Mengajar Kelas {{ kelas }} | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Log Mengajar Kelas {{ kelas }}</h1>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Tanggal</th>
+    <th>Guru</th>
+    <th>Kurikulum</th>
+    <th>Deskripsi</th>
+  </thead>
+
+  {% for i in kelas.logmengajar_set.all %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td><a href="{% url 'account-app:logmengajar-admin-detail' i.pk %}">{{ i.tanggal_buat }}</a></td>
+    <td>{{ i.guru|title }}</td>
+    <td>{{ i.kurikulum }}</td>
+    <td>
+        <div class="dropdown no-arrow">
+
+          <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-comment-dots"></i>
+          </a>
+
+          <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="mx-3">
+              <div>
+                {{ i.deskripsi.html|safe|slice:":100" }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+
+{% endblock content %}

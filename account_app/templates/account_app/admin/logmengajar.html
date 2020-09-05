@@ -1,0 +1,28 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Log Mengajar | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+
+<h1>Kelas {{ logmengajar.kelas }} | {{ logmengajar.kurikulum.mapel }}</h1>
+<hr>
+<h4>Kurikulum: <strong>{{ logmengajar.kurikulum.tingkat_pengajaran }}</strong></h4>
+<p>Disampaikan oleh <strong>{{ logmengajar.guru }}</strong></p>
+
+<div class="card border-success">
+  <div class="card-body">
+    {{ logmengajar.deskripsi.html|safe }}
+  </div>
+</div>
+
+
+<br>
+
+<blockquote class="blockquote text-right">
+  <footer class="blockquote-footer"><strong>{{ logmengajar.tanggal_buat }}</strong></footer>
+</blockquote>
+
+{% endblock content %}

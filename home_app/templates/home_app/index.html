@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Sekolah Akademia</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'home_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'home_app/css/one-page-wonder.min.css' %}" rel="stylesheet">
+
+  <!-- icon browser tab -->
+  <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img width="80" src="{% static 'img/logo.png' %}" alt="logo">Sekolah Akademia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tentang Kami</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Kurikulum</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Kontak dan Alamat</a>
+          </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Halo, "{{ user.username }}"
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {% if user|has_group:"admin" %}
+              <a class="dropdown-item" href="{% url 'account-app:home-admin' %}">Masuk Aplikasi</a>
+              {% elif user|has_group:"guru" %}
+              <a class="dropdown-item" href="{% url 'account-app:home-guru' %}">Masuk Aplikasi</a>
+              {% elif user|has_group:"murid" %}
+              <a class="dropdown-item" href="{% url 'account-app:home-murid' %}">Masuk Aplikasi</a>
+              {% endif %}
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
+          {% else %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Halaman Anggota
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+              <a class="dropdown-item" href="{% url 'registration' %}">Daftar Baru</a>
+            </div>
+          </li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead text-center text-white" style="background-image: url({% static 'home_app/img/kids8.jpg' %});">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">Mari Belajar Bersama!</h1>
+        <h2 class="masthead-subheading mb-0">Sekolah Akademia SD-SMP-SMA</h2>
+        <a href="#" class="btn btn-success btn-xl rounded-pill mt-5">Pelajari Lebih Lanjut</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'home_app/img/kids4.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Kurikulum Unggulan</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'home_app/img/kids2.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">Guru Profesional dan Melayani</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'home_app/img/kids5.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Kegiatan Ekstra Terbaik</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Agora Tech. 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'home_app/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'home_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

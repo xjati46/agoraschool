@@ -1,0 +1,61 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+  <title>Guru | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-3">
+    <h1>Daftar Guru</h1>
+  </div>
+  <div class="col">
+
+
+    <form class='form-inline' method="get">
+      {% csrf_token %}
+
+      {% for field in filter_qs.form %}
+        <div class="form-group">
+          {{ field.label }}
+          {% render_field field class="form-control m-2" %}
+          {{ field.errors }}
+        </div>
+      {% endfor %}
+
+      <button class='btn btn-success' type="submit">Terapkan Filter</button>
+      <a class='btn btn-warning m-2' href="{% url 'account-app:sortnama-guru-admin'%}">Hapus</a>
+
+    </form>
+  </div>
+</div>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Gravatar</th>
+    <th>Nama <a href="{% url 'account-app:sortnama-guru-admin' %}"><i class="fa fa-sort"></i></a></th>
+    <th>Mata Pelajaran <a href="{% url 'account-app:guru-admin' %}"><i class="fa fa-sort"></i></a></th>
+  </thead>
+
+
+  {% for i in filter_qs.qs %}
+  <tr>
+    <td class='align-middle'>{{ forloop.counter }}.</td>
+    <td><img class="rounded-circle" src="{{ i.guru|gravatar:30 }}"></td>
+    <td class='align-middle'><a href="{% url 'account-app:guru-admin-detail' i.pk %}">{{ i.guru.nama_lengkap|title }} ({{ i.guru.nama_panggilan }})</a></td>
+    <td class='align-middle'>{{ i.mapel }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+<blockquote class="blockquote text-right">
+  <footer class="blockquote-footer"><em>Menampilkan <strong>{{ filter_qs.qs|length }}</strong> dari <strong>{{ qs|length }}</strong> entri.</em></footer>
+</blockquote>
+
+{% endblock content %}

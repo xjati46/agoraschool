@@ -1,0 +1,52 @@
+{% extends 'account_app/murid/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Laporan Murid | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+<h1>
+  Daftar Laporan
+</h1>
+
+<table class='table'>
+  <thead>
+    <th>No.</th>
+    <th>Waktu</th>
+    <th>Konten</th>
+    <th>Guru</th>
+    <th>Murid</th>
+  </thead>
+
+
+  {% for i in laporanmurid_list %}
+  <tr>
+    <td>{{ forloop.counter }}.</td>
+    <td><a href="{% url 'extra-app:laporanmurid-murid-detail' i.pk %}">{{ i.waktu }}</a></td>
+    <td>
+        <div class="dropdown no-arrow">
+
+          <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-comment-dots"></i>
+          </a>
+
+          <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="mx-3">
+              <div>
+                {{ i.konten.html|safe|slice:":100" }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </td>
+    <td>{{ i.pelapor|title }}</td>
+    <td>{{ i.terlapor|title }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+{% endblock content %}

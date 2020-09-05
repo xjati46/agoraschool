@@ -1,0 +1,35 @@
+{% extends 'account_app/admin/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  <title>Pengumuman | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="card shadow">
+  <div class="card-body">
+
+    <form method="post" class='user'>
+      {% csrf_token %}
+
+      {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}
+        {% render_field field class="form-control" %}
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+
+
+      <input type="submit" value="Kirim" class="btn btn-success">
+      <a href="{% url 'extra-app:pengumuman-admin' %}" class='btn btn-danger ml-2'>Batal</a>
+
+    </form>
+
+  </div>
+</div>
+
+
+{% endblock content %}

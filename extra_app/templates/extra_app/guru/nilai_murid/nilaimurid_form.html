@@ -1,0 +1,57 @@
+{% extends 'account_app/guru/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  <title>Nilai Murid | Sekolah Akademia</title>
+
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-lg-8 col-md-5">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-5">
+
+        <form method="post" class='user'>
+          {% csrf_token %}
+
+          <input type="hidden" name="pembuat_tes" id="id_pembuat_tes" value='{{ user.id }}'>
+          <div class="form-group">
+            {{ form.mapel_tes.label }}
+
+            <select name="mapel_tes" class="form-control" required="" id="id_mapel_tes">
+              <option value="" selected="">---------</option>
+
+              {% for i in user.timmapel_set.all %}
+                <option value="{{ i.mapel.id }}">{{ i.mapel }}</option>
+              {% endfor %}
+
+            </select>
+
+            {{ form.mapel_tes.errors }}
+          </div>
+
+          {% for field in form %}
+            {% if field is not form.pembuat_tes and field is not form.mapel_tes %}
+              <div class="form-group">
+                {{ field.label }}
+                {% render_field field class="form-control" %}
+                {{ field.errors }}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+
+          <input type="submit" value="Kirim" class="btn btn-success">
+          <a href="{% url 'extra-app:nilaimurid-guru' %}" class='btn btn-danger ml-2'>Batal</a>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
