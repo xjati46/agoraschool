@@ -1,5 +1,5 @@
 from django.db import models
-from account_app.models import AnggotaKelas, TimMapel, Mapel
+from account_app.models import AnggotaKelas, TimMapel, Mapel, CustomUser
 from django_quill.fields import QuillField
 
 # Create your models here.
@@ -30,7 +30,7 @@ class NilaiMurid(models.Model):
     mapel_tes = models.ForeignKey(
         Mapel, on_delete=models.CASCADE, verbose_name="Mata Pelajaran")
     pembuat_tes = models.ForeignKey(
-        TimMapel, on_delete=models.CASCADE, verbose_name="Penilai")
+        CustomUser, on_delete=models.CASCADE, verbose_name="Penilai")
     waktu = models.DateTimeField()
     deskripsi = models.CharField(max_length=300)
     nilai = models.FloatField()
@@ -47,7 +47,7 @@ class LaporanMurid(models.Model):
     terlapor = models.ForeignKey(
         AnggotaKelas, on_delete=models.CASCADE, verbose_name="Murid")
     pelapor = models.ForeignKey(
-        TimMapel, on_delete=models.CASCADE, verbose_name="Guru")
+        CustomUser, on_delete=models.CASCADE, verbose_name="Guru")
     waktu = models.DateTimeField()
     konten = QuillField()
 

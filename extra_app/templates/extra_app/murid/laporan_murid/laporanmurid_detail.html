@@ -16,11 +16,11 @@
         <div class="row no-gutters align-items-center">
           <div class="col-8 mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Dari:</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ laporanmurid.pelapor }}</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ laporanmurid.pelapor.nama_lengkap|title }}</div>
           </div>
           <div class="col-3">
-            {% if laporanmurid.pelapor.guru.email %}
-              <img class="rounded-circle" src="{{ laporanmurid.pelapor.guru|gravatar:50 }}">
+            {% if laporanmurid.pelapor.email %}
+              <img class="rounded-circle" src="{{ laporanmurid.pelapor|gravatar:50 }}">
             {% else %}
 
             {% endif %}
